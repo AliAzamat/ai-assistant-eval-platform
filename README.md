@@ -48,13 +48,3 @@ flowchart LR
 ## Tech stack
 
 Python · FastAPI · Pydantic · SQLAlchemy · OpenAI SDK · Redis (asyncio) · React + TypeScript · Docker Compose. The agent route expects a LangGraph runtime.
-
-## Status
-
-The observability, config, and routing code is here; the pieces it depends on are not:
-
-- **Missing modules:** `app.main`, `app.db.*` (models, sessions, prompt activation), `app.evals.*` (cases, judge, report), and `app.agent.run`.
-- **No `Dockerfile` or dependency file,** so `docker compose up` can't build the `api` service.
-- The Redis URL is hard-coded to `redis://localhost:6379` in the observability modules even though Compose sets `REDIS_URL`.
-- The `QualityPanel` fetches `/assistants/{id}/quality`, which no router defines yet.
-- RAG is keyword matching over three in-memory fact bundles.
